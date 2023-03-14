@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="header1">{% block title %} On behalf of Her Majesty the Cat {% endblock %}</h1>
+    <h1 class="header1">MYSA IS OUR QUEEN</h1>
+<div class="input">
+<form method="post" action="/save_data"> <!--so we summon the /save_data 'page' to actually save data from input form-->
+<label for="post" class="question">Write your thoughts about Mysa:</label>
+		<input type="text" id="post" name="posts" value=""> <!--So we specify the type of future content, we assigned id for future use in CSS or JS, we assigned name to identify the field when the form is submitted and we defined that field must be empty-->
+<button type="submit" class="school">Save</button><!--simple button, school level of programming-->
+</form>
+</div>
+{% endblock %}
+{% block utc_dt %}
+    <p class="datetime">UTC time: {{ utc_dt }}</p> <!--I need to place this part at the bottom of my webpage, so will be done in future-->
+{% endblock %}
+
+</html>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="header1">{% block title %}Blog{% endblock %}</h1>
+<div class="blogposts">
+{% for post in posts %}
+<div class="posts">
+<p class="onumber">{{ loop.index }}</p> <!--to print the ordinal number of each post-->
+<p class="ptext">{{ post.text }}</p>
+<p class="pdate">{{ post.datetime }}</p>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
