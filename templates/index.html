@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 style="color:navy" align="center">{% block title %} On behalf of Her Majesty the Cat {% endblock %}</h1>
-    <h1 style="color:navy" align="center">MYSA IS OUR QUEEN</h1>
-<div class="input" style="margin-left:50px;">
+    <h1 class="header1">{% block title %} On behalf of Her Majesty the Cat {% endblock %}</h1>
+    <div class="quest">
+        <label for="post" class="question">Write your thoughts about Mysa:</label>
+    </div>
+<div class="input">
 <form method="post" action="/save_data"> <!--so we summon the /save_data 'page' to actually save data from input form-->
-<label for="post" style="color:navy">Write your thoughts about Mysa:</label>
-		<input type="text" id="post" name="posts" value=""> <!--So we specify the type of future content, we assigned id for future use in CSS or JS, we assigned name to identify the field when the form is submitted and we defined that field must be empty-->
-<button type="submit" style="background-color:gray; color:navy;">Save</button><!--simple button, school level of programming-->
+	<input type="text" class="post" id="post" name="posts" value=""> <!--So we specify the type of future content, we assigned id for future use in CSS or JS, we assigned name to identify the field when the form is submitted and we defined that field must be empty-->
+    <button type="submit" class="school">Save</button><!--simple button, school level of programming-->
 </form>
 </div>
 {% endblock %}
 {% block utc_dt %}
-    <p style="font-size:15;  color:navy;" align="center">UTC time: {{ utc_dt }}</p> <!--I need to place this part at the bottom of my webpage, so will be done in future-->
+    <p class="datetime">UTC time: {{ utc_dt }}</p> <!--I need to place this part at the bottom of my webpage, so will be done in future-->
 {% endblock %}
 
 </html>

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 style="color:navy;" align="center">{% block title %}Blog{% endblock %}</h1>
-<div style="width: 50%; margin: auto"> <!--style elements must be transfered to .css file, I should write a class for each element to define style in .css-->
+<h1 class="header1">{% block title %}Blog{% endblock %}</h1>
+<div class="blogposts">
 {% for post in posts %}
-<div style="padding: 10 px;  margin: 20px" align="center">
-<p>#{{ loop.index }}</p> <!--to print ordinal number of each post-->
-<p style="font-size:24px; color:navy">{{ post.text }}</p>
-<p style="font-size:18px; color:navy">{{ post.datetime }}</p>
+<div class="posts">
+<p class="onumber">{{ loop.index }}</p> <!--to print the ordinal number of each post-->
+<p class="ptext">{{ post.text }}</p>
+<p class="pdate">{{ post.datetime }}</p>
 </div>
 {% endfor %}
 </div>

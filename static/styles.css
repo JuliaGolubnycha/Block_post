@@ -1,0 +1,134 @@
+body {
+    font-family: 'MedievalSharp', cursive;
+    background-color: #b9ff9c;
+}
+
+.header1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 27px;
+    position: absolute; /*to have header in the middle of the screen*/
+    left: 50%;
+    transform: translate(-50%, -50%); /*to move header to be exact in the middle*/
+    margin-bottom: 30px;
+    color: #877257;
+}
+
+.header3 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 15px;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    color: black;
+}
+
+.question {
+    font-size: 16px;
+    color: #877257;
+}
+
+.post{
+    background-color: #a4ffb7;
+}
+
+.school{
+    background-color:#877257; /*this is the style for buttons*/
+    color:#bfff92;
+}
+
+.navb {
+    margin-left: 50px; /*for navigational panel upside*/
+}
+
+.navc { /*for each navigational button*/
+    color: #877257;
+    font-size: 2em;
+    margin-right: 50px;
+    text-decoration: none; /*this is needed to remove the underline from links*/
+
+}
+
+.content {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-link {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 15px;
+    margin-bottom:15px;
+    color: #4169e1;
+}
+
+.input {
+    display: flex;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.quest{
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+}
+
+.datetime {
+    font-size:15px;
+    font-style: !important;
+    color:#b79a7d;
+    position: absolute; /*to have header in the middle of the screen*/
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*to move header to be exact in the middle*/
+}
+
+.blogposts {
+    width: 50%; 
+    margin: auto
+    }
+
+.posts {
+    padding: 10px;
+    margin: 20px;
+    margin-top: 30px;
+    align:center;
+}
+
+.posts:nth-child(odd) { /*Tricky trick of the West to paint posts into different colors*/
+   background-color: #a4ffb7;
+}
+.posts:nth-child(even) {
+   background-color: #bfff92;
+}
+
+.onumber {
+    font-style: bold;
+    font-size: 18px;
+    color: #b79a7d;
+}
+
+.ptext {
+    font-size:24px; 
+    color:#877257;
+}
+
+.pdate {
+    font-size:18px; 
+    color:#b79a7d;
+}
+
+.main_content {
+    background-color: #fff;
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 105px 90px;
+}

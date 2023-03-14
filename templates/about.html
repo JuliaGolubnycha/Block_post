@@ -2,7 +2,7 @@
 {% extends 'base.html' %} <!--the base.html contains header and content blocks for each page-->
 
 {% block content %}
-    <h1 style="color:navy;" align="center">{% block title %} About project {% endblock %}</h1>
-    <h3 style="color:navy; margin:auto;">This website was developed by Julia to test her IQ. However, would be good to praise Her Meowjesty the Queen Mysa, may the God save her.
-You can call Julia using her phone number <span title="Please consider that St. John's has its' own unic timezone">+17093417172</span> or write her an email using <span title="But anakinsucks@gmail.com works as well">y.holubnycha@gmail.com.</span> May the cats be we you!</h3>
+    <h1 class="header1">{% block title %} About project {% endblock %}</h1>
+    <h3 class="header3">This website was developed by Julia to test her IQ. However, would be good to praise Her Meowjesty the Queen Mysa, may the God save her.
+You can call Julia using her phone number <span title="Please consider that St. John's has its' own unic timezone"><a href="tel:+17093417172" class="contact-link">+1 (709) 341 7172</a></span> or write her an email using <span title="But anakinsucks@gmail.com works as well"><a href="mailto:y.holubnycha@gmail.com" class="contact-link">y.holubnycha@gmail.com.</a></span> May the cats be we you!</h3>
 {% endblock %}

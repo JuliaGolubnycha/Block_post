@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head style="background-color:#8fbc8f;">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--we are defining metadata for this website including encoding. IE=edge means the browser must use the latest engine ofr rendering. These two lines are very important to properly interpreter and display the site by browsers. UA here means User Agent, not Ukraine.-->
-    <title>{% block title %} {% endblock %} - HERMAJESTY</title> <!--So every page title has '-HERMAJESTY' ending-->
-<style> /*Style for navigation buttons*/
-nav a{
-color: navy;
-font-size: 2em;
-margin-left: 50px;
-text-decoration: none;
-}
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--This line is needed to define the viewport settings for a webpage-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet"> <!--I am showing off with this beautiful font-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>{% block title %} {% endblock %} - HERMAJESTY</title> <!--So every page title has '- HERMAJESTY' ending-->
 </head> <!--main part of every page-->
-<body style="background-color:#8fbc8f;"> 
-<nav> <!--navigation buttons-->
-<a href="{{ url_for('hello') }}">HerMajestyTheQueen</a> <!--url_for is a Flask function that is used to dynamically generate URLs for a specific endpoint in the application-->
-<a href="{{ url_for('posts') }}">Blog</a> <!--The expression should be replaced with some value, that is why we surrounded it with these symbols. In this part, the expression will be replaced with URL address for the home page.-->
-<a href="{{ url_for('about') }}">About project</a>
+<body> 
+<nav class="navb"> <!--navigation buttons-->
+<a href="{{ url_for('hello') }}" class="navc">HerMajestyTheQueen</a> <!--url_for is a Flask function that is used to dynamically generate URLs for a specific endpoint in the application-->
+<a href="{{ url_for('posts') }}" class="navc">Blog</a> <!--The expression should be replaced with some value, that is why we surrounded it with these symbols. In this part, the expression will be replaced with URL address for the home page.-->
+<a href="{{ url_for('about') }}" class="navc">About project</a>
 </nav>
 <hr><!--a horizontal line under the navigation bar-->
-<div id="content">
+<div class="content" id="content">
 {% block content %} <!--a placeholder for content and a part of Jinja2 templating engine used by Flask.-->
 {% endblock %}
 </div>
-<div id="time">
+<div class="time" id="time">
     {% block utc_dt %}
     {% endblock %}
 </div>
