@@ -3,7 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 import time
 from datetime import datetime
 
+<<<<<<< HEAD
 app = Flask(__name__, static_folder='static') #This line must be in every similar app. We also need to assign static folder to avoid browsers' cybersecurity settings.
+=======
+app = Flask(__name__) #This line must be in every similar app
+>>>>>>> updated_db
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3' #This line creates database which will contain all needed data
 
 db = SQLAlchemy(app) #db is an object of the SQLAlchemy class, which is created by passing the app instance to the SQLAlchemy constructor
