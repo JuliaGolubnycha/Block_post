@@ -25,7 +25,7 @@ body {
     color: black;
 }
 
-.question {
+.question1, .question2{
     font-size: 16px;
     color: #877257;
 }
@@ -75,11 +75,8 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.quest{
-    position: absolute;
-    top: 47%;
-    left: 50%;
-    transform:translate(-50%, -50%);
+.field {
+    margin-right: 30px;
 }
 
 .datetime {

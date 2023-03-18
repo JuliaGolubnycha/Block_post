@@ -1,22 +1,22 @@
-from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import case, cast, String, and_
+from flask import Flask, render_template, request, redirect, url_for
 import time
 from datetime import datetime
 
-<<<<<<< HEAD
 app = Flask(__name__, static_folder='static') #This line must be in every similar app. We also need to assign static folder to avoid browsers' cybersecurity settings.
-=======
-app = Flask(__name__) #This line must be in every similar app
->>>>>>> updated_db
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3' #This line creates database which will contain all needed data
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True #This line will refresh the DB with every launch to make sure that uodated code works well
 
 db = SQLAlchemy(app) #db is an object of the SQLAlchemy class, which is created by passing the app instance to the SQLAlchemy constructor
 class BlogPosts(db.Model): #This line creates class BlogPosts, which is the subclass of db object and inherits all its' attributes and methods
 	__tablename__ = 'blog_posts' #This line creats table which is used to save out posts
 	id = db.Column('id', db.Integer, primary_key = True) #id column
-	text = db.Column(db.String(200000))  #posts column
+	title = db.Column (db.String(200)) #titles' column
+	text = db.Column(db.String(200000))  #posts' column
 	datetime = db.Column(db.DateTime()) #date and time column
-	def __init__(self, text, datetime): #we are defining method which is used to initialize the object. Values text and datetime are assigned to variables with the same names
+	def __init__(self, title, text, datetime): #we are defining method which is used to initialize the object. Values text and datetime are assigned to variables with the same names
+	   self.title = title
 	   self.text = text
 	   self.datetime = datetime
 
@@ -26,14 +26,15 @@ def hello(): #method which downloads the home page
 
 @app.route('/save_data', methods=['POST']) #this is my way to save data from input form to database
 def save_data():
-    data=request.form['posts'] #we are collecting data which user entered to the form on a main page. posts is a name assigned to form in the HTML part.
-    db.session.add(BlogPosts(text=data, datetime=datetime.now())) #so is one transaction with database to add text from user and to save information about date and time of entering those data
-    db.session.commit() #saving changes
+	datat=request.form['titles'] #to collect titles
+	data=request.form['posts'] #we are collecting data which user entered to the form on a main page. posts is a name assigned to form in the HTML part.
+	db.session.add(BlogPosts(title = datat, text=data, datetime=datetime.now())) #so is one transaction with database to add text from user and to save information about date and time of entering those data
+	db.session.commit() #saving changes
 	#    with open('data.txt', 'a') as w: - previous way to save data
 	#        w.write(data+'\n') - which used simple text file in the root directory of the project. Good old times.
-    time.sleep(1) #just to make webpage a little bit more oldschool
+	time.sleep(1) #just to make webpage look like a little bit more oldschool
 	
-    return redirect(url_for('hello')) #to refresh the home page after saving data
+	return redirect(url_for('hello')) #to refresh the home page after saving data
 
 @app.route('/about_project') #just page 'about'
 def about():
@@ -49,5 +50,12 @@ def posts():
 
 if __name__ == "__main__": #this part I don't understand at the moment, but it must be here
 	with app.app_context(): #to create a new application context in Flask app
-		db.create_all() #to create needed tables if they aren't exist
+                db.create_all() #to create needed tables if they aren't exist but somehow this doesn't work - learn that question after
+		#BlogPosts.query.update({ #to fill all empty titles with some data
+                        #BlogPosts.title: case()
+                        #.when(BlogPosts.title.is_(None), cast(BlogPosts.id, sqlalchemy.String))
+                        #.when(and_(BlogPosts.title != None, BlogPosts.title != ''), BlogPosts.title)
+                        #.else_(BlogPosts.title)
+                        #.label('title')
+                        #}, synchronize_session=False)
 	app.run(debug=True) #so app must work considering all part of code upside

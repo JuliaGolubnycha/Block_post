@@ -7,26 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet"> <!--I am showing off with this beautiful font-->
-<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-=======
-    <link rel="stylesheet" type="text/css" href="C:\Users\CoopMicro\Desktop\site\templates\styles\styles.css">
->>>>>>> updated_db
     <title>{% block title %} {% endblock %} - HERMAJESTY</title> <!--So every page title has '- HERMAJESTY' ending-->
 </head> <!--main part of every page-->
 <body> 
 <nav class="navb"> <!--navigation buttons-->
-<<<<<<< HEAD
 <a href="{{ url_for('hello') }}" class="navc">HerMajestyTheQueen</a> <!--url_for is a Flask function that is used to dynamically generate URLs for a specific endpoint in the application-->
 <a href="{{ url_for('posts') }}" class="navc">Blog</a> <!--The expression should be replaced with some value, that is why we surrounded it with these symbols. In this part, the expression will be replaced with URL address for the home page.-->
 <a href="{{ url_for('about') }}" class="navc">About project</a>
-=======
-<a href="{{ url_for('hello') }}">HerMajestyTheQueen</a> <!--url_for is a Flask function that is used to dynamically generate URLs for a specific endpoint in the application-->
-<a href="{{ url_for('posts') }}">Blog</a> <!--The expression should be replaced with some value, that is why we surrounded it with these symbols. In this part, the expression will be replaced with URL address for the home page.-->
-<a href="{{ url_for('about') }}">About project</a>
->>>>>>> updated_db
 </nav>
-<hr><!--a horizontal line under the navigation bar-->
+<hr class="hr"><!--a horizontal line under the navigation bar-->
 <div class="content" id="content">
 {% block content %} <!--a placeholder for content and a part of Jinja2 templating engine used by Flask.-->
 {% endblock %}

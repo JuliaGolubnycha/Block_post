@@ -2,22 +2,14 @@
 
 {% block content %}
     <h1 class="header1">{% block title %} On behalf of Her Majesty the Cat {% endblock %}</h1>
-<<<<<<< HEAD
-    <div class="quest">
-        <label for="post" class="question">Write your thoughts about Mysa:</label> <!--Don't forget to change the topic later-->
-    </div>
+<form method="post" action="/save_data"> <!--so we summon the /save_data 'page' to actually save data from input form-->
 <div class="input">
 <form method="post" action="/save_data"> <!--so we summon the /save_data 'page' to actually save data from input form-->
-	<input type="text" class="post" id="post" name="posts" value=""> <!--So we specify the type of future content, we assigned id for future use in CSS or JS, we assigned name to identify the field when the form is submitted and we defined that field must be empty-->
+    <label for="post" class="question1">Write the title for your thoughts about Mysa:</label>
+    <input class="field" type="text" id="title" name="titles" value=""> <!--So we specify the type of future content, we assigned id for future use in CSS or JS, we assigned name to identify the field when the form is submitted and we defined that field must be empty-->
+    <label for="post" class="question2">Write your thoughts about Mysa:</label>
+	<input class="field" type="text" id="post" name="posts" value=""> <!--So we specify the type of future content, we assigned id for future use in CSS or JS, we assigned name to identify the field when the form is submitted and we defined that field must be empty-->
     <button type="submit" class="school">Save</button><!--simple button, school level of programming-->
-=======
-    <h1 class="header1">MYSA IS OUR QUEEN</h1>
-<div class="input">
-<form method="post" action="/save_data"> <!--so we summon the /save_data 'page' to actually save data from input form-->
-<label for="post" class="question">Write your thoughts about Mysa:</label>
-		<input type="text" id="post" name="posts" value=""> <!--So we specify the type of future content, we assigned id for future use in CSS or JS, we assigned name to identify the field when the form is submitted and we defined that field must be empty-->
-<button type="submit" class="school">Save</button><!--simple button, school level of programming-->
->>>>>>> updated_db
 </form>
 </div>
 {% endblock %}
