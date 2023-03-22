@@ -23,13 +23,13 @@ class BlogPosts(db.Model): #This line creates class BlogPosts, which is the subc
 
 @app.route('/') #our home page
 def hello(): #method which downloads the home page
-    return render_template('index.html', utc_dt=datetime.now()) #This is an example of using variable from html part
+    return render_template('index.html', utc_dt=datetime.now().replace(microsecond=0)) #This is an example of using variable from html part
 
 @app.route('/save_data', methods=['POST']) #this is my way to save data from input form to database
 def save_data():
 	datat=request.form['titles'] #to collect titles
 	data=request.form['posts'] #we are collecting data which user entered to the form on a main page. posts is a name assigned to form in the HTML part.
-	db.session.add(BlogPosts(title = datat, text=data, datetime=datetime.now())) #so is one transaction with database to add text from user and to save information about date and time of entering those data
+	db.session.add(BlogPosts(title = datat, text=data, datetime=datetime.now().replace(microsecond=0))) #so is one transaction with database to add text from user and to save information about date and time of entering those data
 	db.session.commit() #saving changes
 	#    with open('data.txt', 'a') as w: - previous way to save data
 	#        w.write(data+'\n') - which used simple text file in the root directory of the project. Good old times.

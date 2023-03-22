@@ -114,13 +114,20 @@ body {
     color: #b79a7d;
 }
 
+.ptitle {
+    font-size: 24px;
+    color: #877257;
+}
+
 .ptext {
-    font-size:24px; 
+    font-size:18px; 
     color:#877257;
 }
 
+
+
 .pdate {
-    font-size:18px; 
+    font-size:15px; 
     color:#b79a7d;
 }
 

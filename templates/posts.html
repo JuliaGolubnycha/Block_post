@@ -6,12 +6,12 @@
 {% for post in posts %}
 <div class="posts">
 	<p class="ptitle">{{ post.title }}</p>
-	<p class="onumber">{{ loop.index }}</p> <!--to print the ordinal number of each post-->
+	<p class="onumber">This is post № {{ loop.index }}</p> <!--to print the ordinal number of each post-->
+	<p class="pdate">{{ post.datetime }}</p>
 	<p class="ptext">{{ post.text }}
 	<form method="post" action="/like_posts">
 		<button type="submit" name="like" value="{{ post.id }}" class="school" onclick="alert('You have liked the post')">Like</button> <!--button should have a name for backend-->
 	</form></p>
-	<p class="pdate">{{ post.datetime }}</p>
 	<p class="plike">Likes: {{ post.likes }}</p>
 </div>
 {% endfor %}
