@@ -9,10 +9,24 @@
 	<p class="onumber">This is post № {{ loop.index }}</p> <!--to print the ordinal number of each post-->
 	<p class="pdate">{{ post.datetime }}</p>
 	<p class="ptext">{{ post.text }}
-	<form method="post" action="/like_posts">
-		<button type="submit" name="like" value="{{ post.id }}" class="school" onclick="alert('You have liked the post')">Like</button> <!--button should have a name for backend-->
-	</form></p>
-	<p class="plike">Likes: {{ post.likes }}</p>
+	<div class="likesdislikes">
+		<div class="like_container">
+			<form method="post" action="/like_posts">
+				<button type="submit" name="like" value="{{ post.id }}" class="school" onclick="alert('You have liked the post')">Like</button> <!--button should have a name for backend-->
+			</form> 
+			<p class="plike">Likes: {{ post.likes }}</p>
+		</div>
+		<div class="dislike_container">
+			<form method="post" action="/dislike_posts">
+				<button type="submit" name="dislike" value="{{ post.id }}" class="school" onclick="alert('You have disliked the post')">Dislike</button> <!--button should have a name for backend-->
+			</form>
+			<p class="plike">Dislikes: {{ post.dislikes }}</p>
+		</div>
+		<div class="meh">
+			<button type="button" name="meh" class="school" onclick="alert('Do not you dare meh at me here!!!')">Meh =/</button>
+		</div>
+	</div>
+	</p>
 </div>
 {% endfor %}
 </div>

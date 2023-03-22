@@ -96,6 +96,7 @@ body {
 
 .posts {
     padding: 10px;
+    padding-bottom: 50px;
     margin: 20px;
     margin-top: 30px;
     align:center;
@@ -136,8 +137,20 @@ body {
     color: #b79a7d;
 }
 
-.main_content {
-    background-color: #fff;
-    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.1);
-    padding: 105px 90px;
+.like_container {
+    float: left;
+}
+
+.dislike_container {
+    float: right;
+}
+
+.meh {
+    position: absolute; 
+    left: 50%;
+    transform: translate(-50%); 
+}
+
+.likesdislikes {
+    margin-bottom: 30px;
 }

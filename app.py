@@ -16,11 +16,12 @@ class BlogPosts(db.Model): #This line creates class BlogPosts, which is the subc
 	text = db.Column(db.String(200000))  #posts' column
 	datetime = db.Column(db.DateTime()) #date and time column
 	likes = db.Column('likes', db.Integer, default=0)
+	dislikes = db.Column('dislikes', db.Integer, default=0)
 	def __init__(self, title, text, datetime): #we are defining method which is used to initialize the object. Values text and datetime are assigned to variables with the same names
 	   self.title = title
 	   self.text = text
 	   self.datetime = datetime
-
+	   
 @app.route('/') #our home page
 def hello(): #method which downloads the home page
     return render_template('index.html', utc_dt=datetime.now().replace(microsecond=0)) #This is an example of using variable from html part
@@ -58,6 +59,15 @@ def like_post():
 		post.likes += 1
 		db.session.commit()
 	return redirect(url_for('posts'))
+
+@app.route('/dislike_posts', methods=['GET','POST'])
+def dislike_post():
+	if request.method == 'POST':
+		post_id = request.form['dislike']
+		post = BlogPosts.query.filter_by(id=post_id).first()
+		post.dislikes += 1
+		db.session.commit()
+	return redirect (url_for('posts'))
 
 if __name__ == "__main__": #this part I don't understand at the moment, but it must be here
 	with app.app_context(): #to create a new application context in Flask app
