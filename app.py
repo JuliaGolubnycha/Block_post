@@ -15,21 +15,11 @@ class BlogPosts(db.Model): #This line creates class BlogPosts, which is the subc
 	title = db.Column (db.String(200)) #titles' column
 	text = db.Column(db.String(200000))  #posts' column
 	datetime = db.Column(db.DateTime()) #date and time column
-	like = db.relationship('Like', uselist=False, backref='blog_post') #This row creates a link between tables. Uselist false parameter means that we will have one-to-one type of connection, backref is just a reminder that table has two names in this code
+	likes = db.Column('likes', db.Integer, default=0)
 	def __init__(self, title, text, datetime): #we are defining method which is used to initialize the object. Values text and datetime are assigned to variables with the same names
 	   self.title = title
 	   self.text = text
 	   self.datetime = datetime
-class Like(db.Model):
-	__tablename__='like'
-	like_id=db.Column('like_id', db.Integer, primary_key=True)
-	likes=db.Column('likes', db.Integer, default=0)
-	dislikes=db.Column('dislikes', db.Integer, default=0)
-	blog_post_id = db.Column(db.Integer, db.ForeignKey('blog_posts.id'))
-	def __init__(self, likes, dislikes, blog_post_id):
-		self.likes = likes
-		self.dislikes = dislikes
-		self.blog_post_id = blog_post_id
 
 @app.route('/') #our home page
 def hello(): #method which downloads the home page
@@ -47,15 +37,6 @@ def save_data():
 	
 	return redirect(url_for('hello')) #to refresh the home page after saving data
 
-#@app.route('/like', methods=['POST']) #my way to save likes - a first one, a looser one
-#def like_post():
-#	post_id=request.form['post_id'] #receiving post id
-#	postid=BlogPosts.query.get(post_id) #receiving the post with needed id
-#	postid.like.likes += 1 #this is to count clicks
-#	db.session.commit() #saving changes
-#	return redirect (url_for('posts', post_id=post_id)) #refreshing the page
-
-
 @app.route('/about_project') #just page 'about'
 def about():
     return render_template('about.html') #basically just to show the text at the moment
@@ -63,27 +44,22 @@ def about():
 @app.route('/blog_posts', methods=['GET', 'POST']) #currently the second valuable page in the project. I added get method because I need it after adding likes and dislikes to receive information
 def posts():
 	posts = BlogPosts.query.all() #so we assign posts to be the children of database. One raw in our table means one post
-	likes = Like.query.all()
-
-	if request.method == 'POST':
-		post_id = request.form.get('post_id') # get the post_id from the form
-		post = BlogPosts.query.filter_by(id=post_id).first() # get the post from the database
-		post.likes += 1 # increment the likes count
-		db.session.commit() # save the changes to the database
-
-	# print (posts, likes) #this is so obvious, isn't it
+	print (posts) #this is so obvious, isn't it
 	#    with open('data.txt','r') as f: - previous way to print data
 	#        posts = [line.strip() for line in f.readlines()] - from the simple text file. Good old days.
 	return render_template('posts.html', posts=posts) #of course, we need to show webpage after completing printing action. Why else would we write this method here?
 
+
+@app.route('/like_posts', methods=['GET', 'POST'])
+def like_post():
+	if request.method == 'POST':
+		post_id = request.form['like']
+		post = BlogPosts.query.filter_by(id=post_id).first()
+		post.likes += 1
+		db.session.commit()
+	return redirect(url_for('posts'))
+
 if __name__ == "__main__": #this part I don't understand at the moment, but it must be here
 	with app.app_context(): #to create a new application context in Flask app
                 db.create_all() #to create needed tables if they aren't exist but somehow this doesn't work - learn that question after
-		#BlogPosts.query.update({ #to fill all empty titles with some data (old part of the code, it isn't needed anymore)
-                        #BlogPosts.title: case()
-                        #.when(BlogPosts.title.is_(None), cast(BlogPosts.id, sqlalchemy.String))
-                        #.when(and_(BlogPosts.title != None, BlogPosts.title != ''), BlogPosts.title)
-                        #.else_(BlogPosts.title)
-                        #.label('title')
-                        #}, synchronize_session=False)
 	app.run(debug=True) #so app must work considering all part of code upside
